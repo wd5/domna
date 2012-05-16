@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras social_extras %}
+
+{% block title %}
+    Администрация &mdash; {{ site_title }}
+{% endblock %}
+
+{% block center %}
+    <h1>Администрация</h1>
+    <div class="admins">
+        {% for person in persons %}
+            <div class="admin">
+                <div class="admin_img">
+                    <img src="{{ person.get_src_photo }}" alt="{{ person.fullname }}" />
+                </div>
+                <div class="admin_des">
+                    <span class="admin_name">{{ person.fullname }}</span>
+                    <span class="admin_dol">{{ person.post_title }}</span>
+                    <span class="admin_tel">{{ person.phone_num }}</span>
+                    <span class="admin_time">{{ person.office_hours }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div><!-- /admins -->
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+    {% block_social_service %}
+{% endblock %}

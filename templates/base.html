@@ -1,0 +1,69 @@
+{% load siteblocks_extras %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 8]><link rel="stylesheet" type="text/css" media="screen" href="/static/css/ie.css" /><![endif]-->
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/jcarousel.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" href="/static/js/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/static/js/script.js"></script>
+    <title>
+        {% block title %}
+            {% if meta.title %}
+                {% ifnotequal meta.title ''  %}
+                    {{ meta.title }} &mdash; {{ site_title }}
+                {% endifnotequal %}
+            {% endif %}
+        {% endblock %}
+
+    </title>
+</head>
+
+<body {% block classindex %}{% endblock %}>
+<div class="top_hg"></div>
+<div class="wrapper">
+
+<!--PAGE-->
+<div class="page">
+
+    <!--HEADER-->
+	<div class="header">
+		<a id="logo_box" href="/" title="Муниципальное образование сельское поселение «Домнинское»"><img id="logo" src="/static/img/logo.png" alt="Муниципальное образование сельское поселение «Домнинское»" width="80" height="62" /><span class="logo_in">Муниципальное образование сельское поселение <b>«Домнинское»</b></span></a>
+        {{ contacts|safe }}
+        {% block_menu request.path 'header' %}
+	</div>
+    <!--/HEADER-->
+
+    <!--MAIN-->
+	<div class="main">
+        {% block top_text %}{% endblock %}
+
+		<div class="center">
+        {% block center %}
+        {% endblock %}
+		</div><!--/center-->
+
+		<div class="right">
+        {% block right %}
+        {% endblock %}
+		</div><!--/right-->
+	</div>
+    <!--/MAIN-->
+
+    <!--FOOTER-->
+    <div class="footer">
+		<div id="copyright">© {% now "Y" %} «Муниципальное образование сельское поселение «Домнинское»</div>
+        {% block_menu request.path 'footer' %}
+		<a id="madein" title="Разработка сайта — студия OctoberWeb" href="http://octoberweb.ru/"><img id="octoberweb" alt="Разработка сайта — студия OctoberWeb" src="/static/img/octoberweb.png" width="32" height="32"/>разработка сайта <span>OctoberWeb</span></a>
+    </div>
+    <!--/FOOTER-->
+
+</div>
+<!--/PAGE-->
+
+</div><!--/wrapper-->
+</body>
+</html>

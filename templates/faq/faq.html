@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras social_extras pagination_tags %}
+s
+{% block title %}
+    Вопрос-ответ &mdash; {{ site_title }}
+{% endblock %}
+
+
+{% block center %}
+    <h1>Что-то интересует?</h1>
+    <a href="/faq/sendquestion/" class="_to_faq fancybox">Задать вопрос</a>
+
+    <div class="faq">
+        {% autopaginate questions 10 %}
+        {% for question in questions %}
+            <div class="question">
+                <div class="author">Спрашивает <span class="author_name">{{ question.name }},</span> <span class="author_date">{{ question.pub_date|date:"j E" }} в {{ question.pub_date|date:"H:i" }}</span>
+                </div>
+                <p>{{ question.question }}</p>
+                <div class="tail qst"></div>
+            </div>
+            {% if question.answer %}
+                <div class="answer">
+                    <div class="author">Отвечает <span class="author_name">{{ question.author }},</span> <span class="author_date">{{ question.ans_date|date:"j E" }} в {{ question.ans_date|date:"H:i" }}</span>
+                    </div>
+                    <p>{{ question.answer }}</p>
+                    <div class="tail ans"></div>
+                </div>
+            {% endif %}
+        {% empty %}
+            Вопросов пока нет
+        {% endfor %}
+        {% paginate %}
+    </div><!-- /faq -->
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+    {% block_social_service %}
+{% endblock %}

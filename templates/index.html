@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras %}
+
+{% block classindex %}
+    class="index"
+{% endblock %}
+
+{% block top_text %}
+    <div class="top_text"> <!-- Отображается только на главной странице -->
+        <p>{{ shortabout|safe }}</p>
+        <a href="/about/" class="lnk_italic">Узнать больше из истории поселения</a>
+    </div><!-- /top_text -->
+{% endblock %}
+
+{% block center %}
+
+    <div class="srvs">
+
+        <div class="srv_col_out srv_l">
+            <a href="{{ dscategory.get_absolute_url }}" class="lnk_italic">Все образцы документов</a>
+        </div>
+        <div class="srv_col">
+            <a href="{{ dscategory.get_absolute_url }}" class="srv_col_title">{{ dscategory }}</a>
+            {% if documents %}
+                <ul class="srv_col_docs">
+                {% for document in documents %}
+                    <li><a href="{{ document.get_file_path }}" class="srv_col_icon fmt_doc"></a><a href="{{ document.get_file_path }}">{{ document.title }}</a></li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div class="srv_col_out srv_r">
+            <a href="{{ sstitle.url }}" class="lnk_italic">Полная информация об услугах</a>
+        </div>
+        <div class="srv_col">
+            <a href="{{ sstitle.url }}" class="srv_col_title">Социальные услуги{% comment %}{{ sstitle.title }}{% endcomment %}</a>
+            <ul>
+            {% for socserv in socialservset %}
+                <li><span class="srv_col_icon fmt_dash"></span><a href="{{ socserv.get_absolute_url }}">{{ socserv.title|capfirst }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+
+    </div><!-- /srvs -->
+
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+{% endblock %}

@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+* html #m {
+	position: absolute;
+	top: -1em;
+	left: 0;
+	visibility: hidden;
+	width: 100%;
+	height: 1em;
+	line-height: 1em;
+}
+* html .wrapper {
+	height: 100%;
+	width: expression(
+	(
+		document.getElementById('m')
+		&& document.getElementById('m').clientWidth < 976
+	)
+	?	'976px'
+	:	(
+			document.getElementById('m')
+			&& document.getElementById('m').clientWidth < 1250
+		)
+		?	'100%'
+		:	'1250px'
+	);
+}
+
+
+
+/*6-7*/
+.left, .right, .menu li, .contact, .center, .gal_img, .srv_col, .admin, .text_img,
+.footer_menu li, .modal_form, .submit, .submit div  {
+	*display:inline;
+	*zoom:1;
+}
+.some {
+	*position:relative;
+	*zoom:1;
+}
+.srv_slider .jcarousel-clip-horizontal, .gal_img, .admin_img, .text_img, .srv_col_out, 
+.menu_lvl_1 ul, .textarea, .input {
+	border-bottom: 1px solid #dedede;
+	border-right: 1px solid #dedede;
+}
+.tel {
+	*position: relative;
+	*top: 8px;
+}
+/*6-7*/
+
+
+
+/*6*/
+/*6*/
+

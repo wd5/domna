@@ -1,0 +1,36 @@
+{% ifequal position 'header' %}
+    <div class="menu">
+        {% if menu %}
+            <ul>
+            {% for item in menu %}
+                {% ifequal item.url '/documents/' %}
+                    <li class="menu_lvl_1{% ifequal item.url current %} menu_current{% endifequal %}">
+                        <a href="{{ item.url }}" class="menu_arr">{{ item.title }}</a>
+                        <ul>
+                        {% for categ in categdoc %}
+                            <li class="menu_lvl_2"><a href="{{ categ.get_absolute_url }}">{{ categ }}</a></li>
+                            {% if forloop.last %}
+                                <li class="line_hr"></li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li {% ifequal item.url current %}class="menu_current"{% endifequal %}><a href="{{ item.url }}">{{ item.title }}</a></li>
+                {% endifequal %}
+            {% endfor %}
+            <li class="helper"></li>
+            </ul>
+        {% endif %}
+    </div><!--/menu-->
+{% else %}
+    <div class="footer_menu">
+        {% if menu %}
+            <ul>
+            {% for item in menu %}
+                <li {% ifequal item.url current %}class="menu_current"{% endifequal %}><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div><!--/footer_menu-->
+{% endifequal %}

@@ -1,0 +1,17 @@
+msgid "Documents"
+msgstr "Документы"
+
+msgid "documents"
+msgstr "документы"
+
+msgid "doc_category"
+msgstr "категория"
+
+msgid "doc_categories"
+msgstr "категории"
+
+msgid "document_item"
+msgstr "документ"
+
+msgid "document_items"
+msgstr "документы"

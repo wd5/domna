@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras %}
+
+{% block title %}
+    {% if service %}
+        {{ service.title|capfirst|truncatewords:5 }}
+    {% else %}
+        Социальные услуги &mdash; {{ site_title }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+
+    {# показываем спиок: #}
+    {% if socservices %}
+        <h1>Социальные услуги</h1>
+        <div class="services">
+            <ul>
+            {% for item in socservices %}
+                <li><span class="srv_col_icon fmt_dash"></span><a href="{{ item.get_absolute_url }}">{{ item.title|capfirst }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {# показываем конкретную запись: #}
+    {% if service %}
+        <div class="text">
+            <h1>{{ service.title|capfirst }}</h1>
+            {{ service.description|safe }}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras social_extras %}
+
+{% block title %}
+    {{ docCateg.title }}
+    {% if subCateg %}
+        &mdash; {{ subCateg.title }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+    <h1>{{ docCateg.title }}</h1>
+    <div class="left_menu">
+            <ul>
+                {% for item in childcat %}
+                    <li><a href="{{ item.get_absolute_url }}" {% ifequal item subCateg %}class="left_menu_curr"{% endifequal %} >{{ item.title }}</a></li>
+                {% endfor %}
+            </ul>
+    </div><!-- /left_menu -->
+    <div class="docs">
+        {% for doc in generaldocs %}
+            <div class="doc"><a href="{{ doc.get_file_path }}" class="doc_icon {{ doc.get_fmt_ext }}"></a><a href="{{ doc.get_file_path }}">{{ doc.title }}</a></div>
+        {% endfor %}
+    </div><!-- /docs -->
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+    {% block_social_service %}
+{% endblock %}

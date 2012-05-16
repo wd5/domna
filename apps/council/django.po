@@ -1,0 +1,17 @@
+msgid "Council"
+msgstr "Совет поселения"
+
+msgid "council"
+msgstr "совет поселения"
+
+msgid "council_item"
+msgstr "запись"
+
+msgid "council_items"
+msgstr "записи"
+
+msgid "attached_doc"
+msgstr "документ"
+
+msgid "attached_docs"
+msgstr "документы"

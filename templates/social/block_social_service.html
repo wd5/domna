@@ -1,0 +1,10 @@
+{% if socServices %}
+<div class="srv_slider">
+    <a href="/socialservices/" class="blk_title">Социальные услуги</a>
+    <ul>
+        {% for socService in socServices %}
+            <li><span><a href="{{ socService.get_absolute_url }}" class="srv_slider_lnk">{{ socService.title }}</a></span></li>
+        {% endfor %}
+    </ul>
+</div><!-- /srv_slider -->
+{% endif %}

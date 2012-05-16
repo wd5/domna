@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras pagination_tags %}
+
+{% block title %}
+    {% if CouncilItems %}
+        Совет поселения &mdash; {{ site_title }}
+    {% else %}
+        {{ council_item.short_description|truncatewords:5 }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+
+    {# показываем спиок: #}
+
+    {% if CouncilItems %}
+        <h1>Совет поселения</h1>
+        <div class="news">
+            {% if CouncilItems %}
+                {% autopaginate CouncilItems 15 %}
+                {% for CouncilItem in CouncilItems %}
+                    <div class="new">
+                        <div class="new_date">{{ CouncilItem.date_add|date:"j E" }}</div>
+                        <p><a href="{{ CouncilItem.get_absolute_url }}">{{ CouncilItem.short_description }}</a></p>
+                    </div>
+                {% endfor %}
+                {% paginate %}
+            {% endif %}
+        </div><!-- /news -->
+    {% endif %}
+
+    {# показываем конкретную запись: #}
+
+    {% if council_item %}
+        <div class="text">
+            <h1>{{ council_item.short_description }}</h1>
+            {{ council_item.description|safe }}
+            {% if council_item.get_attached_docs %}
+                <div class="docs">
+                    {% for doc in council_item.get_attached_docs %}
+                        <div class="doc"><a href="{{ doc.get_file_path }}"  class="doc_icon {{ doc.get_fmt_ext }}"></a>{{ doc.title }}</div>
+                    {% endfor %}
+                </div><!-- /docs -->
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+{% endblock %}

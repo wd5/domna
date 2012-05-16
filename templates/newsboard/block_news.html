@@ -1,0 +1,8 @@
+{% if news %}
+    <div class="blk_news">
+        <a href="/news/" class="blk_title">Новости</a>
+        {% for new in news %}
+            <div class="blk_new"><span class="blk_new_date">{{ new.date_add|date:"j E" }}</span><a href="/news/{{ new.id }}/">{{ new.short_text }}</a></div>
+        {% endfor %}
+    </div><!-- /blk_news -->
+{% endif %}

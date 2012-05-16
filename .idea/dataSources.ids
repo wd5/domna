@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Django default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="ea61fadd-55df-4b80-a544-42b2148ef5c6">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql:///XXXXXXXX</jdbc-url>
+    <user-name>root</user-name>
+    <libraries>
+      <library>
+        <url>file://$USER_HOME$/.PyCharm10/config/jdbc-drivers/mysql-connector-java-5.1.15-bin.jar</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load thumbnail social_extras pagination_tags %}
+
+{% block title %}
+    {% if news_current %}
+        {{ news_current.short_text|truncatewords:5 }}
+    {% else %}
+        Новости &mdash; {{ site_title }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+
+    {# показываем спиок: #}
+    {% if news_list %}
+        <h1>Новости</h1>
+        <div class="news">
+            {% autopaginate news_list 15 %}
+            {% for new in news_list %}
+                <div class="new">
+                    <div class="new_date">{{ new.date_add|date:"j E" }}</div>
+                    <p><a href="/news/{{ new.id }}/">{{ new.short_text }}</a></p>
+                </div>
+            {% endfor %}
+            {% paginate %}
+        </div><!-- /news -->
+    {% endif %}
+
+    {# показываем конкретную запись: #}
+    {% if news_current %}
+        <div class="text">
+            <h1>{{ news_current.short_text }}</h1>
+            {{ news_current.date_add }}
+            {{ news_current.text|safe }}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block right %}
+    {% block_social_service %}
+{% endblock %}

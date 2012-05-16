@@ -1,0 +1,23 @@
+msgid "Social"
+msgstr "Администрация"
+
+msgid "social"
+msgstr "администрация"
+
+msgid "socservice"
+msgstr "соц.услуга"
+
+msgid "socservices"
+msgstr "соц.услуги"
+
+msgid "purchase"
+msgstr "закупка"
+
+msgid "purchases"
+msgstr "закупки"
+
+msgid "adminperson"
+msgstr "работник"
+
+msgid "adminpersons"
+msgstr "работники"

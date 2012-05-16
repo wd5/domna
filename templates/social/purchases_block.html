@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load thumbnail newsboard_extras pagination_tags %}
+
+{% block title %}
+    {% if purchase %}
+        {{ purchase.title|truncatewords:5 }}
+    {% else %}
+        Закупки &mdash; {{ site_title }}
+    {% endif %}
+{% endblock %}
+
+{% block center %}
+
+    {# показываем спиок: #}
+    {% if purchases %}
+        <h1>Закупки</h1>
+        <div class="orders">
+            {% autopaginate purchases 15 %}
+            {% for purchase in purchases %}
+                <div class="order">
+                    <div class="order_des">
+                        <a class="doc_icon {{ purchase.get_fmt_ext }}"></a>
+                        <a href="{{ purchase.get_absolute_url }}">{{ purchase.title }}</a>
+                        <p>{{ purchase.short_description }}</p>
+                    </div>
+                    {% if purchase.protocol_file %}
+                        <div class="order_status">Заказ выполнен <a href="{{ purchase.get_file_path }}">(протокол)</a></div>
+                    {% else %}
+                        <div class="order_status">Заказ на рассмотрении</div>
+                    {% endif %}
+                    <div class="order_src"><a href="{{ purchase.url }}">На сайте госзакупок</a></div>
+                </div>
+            {% endfor %}
+            {% paginate %}
+        </div><!-- /orders -->
+    {% endif %}
+
+    {# показываем конкретную запись: #}
+    {% if purchase %}
+        <div class="text">
+            <h1>{{ purchase.title|capfirst }}</h1>
+            <a href="{{ purchase.url }}">На сайте госзакупок</a>
+            {{ purchase.description|safe }}
+            {% if purchase.protocol_file %}
+                Заказ выполнен <a href="{{ purchase.get_file_path }}">(протокол)</a>
+            {% else %}
+                Заказ на рассмотрении
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block right %}
+    {% block_news %}
+{% endblock %}
